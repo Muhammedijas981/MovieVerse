@@ -2,6 +2,7 @@ import { Redirect } from 'expo-router';
 import { useFonts, Poppins_400Regular, Poppins_500Medium, Poppins_700Bold } from '@expo-google-fonts/poppins';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 export default function App() {
 
@@ -20,6 +21,14 @@ export default function App() {
 
         prepare();
     }, [fontsLoaded]);
+
+    useEffect(() => {
+        // Allow all orientations
+        async function enableAllOrientations() {
+            await ScreenOrientation.unlockAsync();
+        }
+        enableAllOrientations();
+    }, []);
 
     if (!fontsLoaded) {
         return null;
