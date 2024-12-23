@@ -1,125 +1,115 @@
 # MovieVerse 🎬
 
-This is my submission for the React Native Developer position at Buy Me a Coffee. The assignment demonstrates my ability to create a modern, performant mobile application using React Native and industry best practices.
+A React Native app that uses the TMDB API to help users discover and browse movies. This is my submission for the Buy Me a Coffee hiring challenge, built as a proof of concept to demonstrate React Native development practices.
 
-## 🎯 Project Overview
+> ⚠ Note: The TMDB API might be blocked in India. If you don't see any movies loading, you'll need to use a VPN.
 
-MovieVerse is a movie discovery app powered by the TMDB API that allows users to:
-- Browse trending and upcoming movies
-- Search and filter movies
-- Save favorites for later viewing
-- View detailed movie information
-- Switch between dark/light themes
+## Table Of Contents
 
-## ✨ Features
+* [Design Choices](#design-choices)
+   * [List Screen](#list-screen)
+   * [Details Screen](#details-screen)
+   * [Technical Decisions](#technical-decisions)
+* [Implementation](#implementation)
+   * [Core Requirements](#core-requirements)
+   * [Additional Features](#additional-features)
+* [Setup Guide](#setup-guide)
+   * [Prerequisites](#prerequisites)
+   * [Installation Steps](#installation-steps)
 
-- 🔍 Search through vast movie database
-- 🌙 Dark/Light mode support
-- 📱 Responsive design for both phones and tablets
-- 🔄 Infinite scroll for seamless browsing
-- ⭐ Save favorite movies
-- 📊 Movie ratings and popularity metrics
-- 🎨 Beautiful, native UI components
-- 🔋 Efficient data caching
+## Design Choices
 
-## 🛠️ Tech Stack
+### List Screen
+The main screen uses a responsive card layout that adapts to different device sizes. On phones, it shows a single column with detailed movie information, while tablets display a grid to utilize the larger screen space.
+![list-white](https://github.com/user-attachments/assets/daca672f-46fc-4218-be62-83f931797fdd)
 
-- React Native with Expo
-- TypeScript for type safety
-- TMDB API for movie data
-- NativeWind for styling
-- Expo Router for navigation
-- AsyncStorage for local data persistence
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/user-attachments/assets/fbd3e662-8a09-44db-8892-8e62be8f5dc9">
+    </td>
+    <td>
+      <img src="https://github.com/user-attachments/assets/daca672f-46fc-4218-be62-83f931797fdd">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="">
+    </td>
+    <td>
+      <img src="">
+    </td>
+  </tr>
+</table>
+Each movie card contains:
+- Title and release year
+- Rating displayed as a 5-star system (converted from TMDB's 10-point scale)
+- Genre tags
+- Popularity indicator using a simple progress bar
 
-## 🚀 Installation & Setup
+### Details Screen
+A straightforward two-section layout that responds to device orientation:
+- Portrait: Stacked layout with poster image on top and details below
+- Landscape: Split view with poster on left and details on right
+This simple approach works well across different screen sizes without overcomplicating the UI.
+
+### Technical Decisions
+- Used React Context instead of Redux for state management, keeping the app simple
+- Implemented infinite scroll for better performance with large datasets
+- Added local caching using AsyncStorage to improve app responsiveness
+- Built with TypeScript for better code reliability
+- Used Expo for faster development and easier testing
+
+## Implementation
+
+### Core Requirements
+- Cross-platform compatibility (iOS & Android)
+- Movie browsing with infinite scroll
+- Search functionality
+- Responsive layouts
+- Dark/Light theme support
+- Offline data caching
+
+### Additional Features
+- Real-time search with debounced API calls
+- Multiple movie list filters (Upcoming, Now Playing, Top Rated)
+- Favorite movies system
+- Orientation-aware layouts
+- Loading state indicators
+
+## Setup Guide
 
 ### Prerequisites
-- Node.js (v16 or newer)
-- npm or yarn
-- Expo CLI (`npm install -g expo-cli`)
-- Git
-- Android Studio (for Android development)
-- Xcode (for iOS development, macOS only)
+1. Node.js & npm
+2. Expo CLI
+   bash
+   npm install -g expo-cli
+   
+3. Android Studio (for Android development)
+4. Xcode (for iOS development, macOS only)
 
-### Step-by-Step Setup
+### Installation Steps
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/movieverse.git
+1. *Get the code and install dependencies*
+   bash
+   git clone <repository-url>
    cd movieverse
-   ```
-
-2. **Install dependencies**
-   ```bash
    npm install
-   # or if you use yarn
-   yarn install
-   ```
+   
 
-3. **Set up environment variables**
-   Create a `.env` file in the root directory:
-   ```env
+2. *Configure environment*
+   Create a .env file in the project root:
+   env
    EXPO_PUBLIC_BASE_URL=https://api.themoviedb.org/3
    EXPO_PUBLIC_AUTH_KEY=your_tmdb_api_key
-   ```
-   > Note: You'll need to get an API key from [TMDB](https://www.themoviedb.org/settings/api)
+   
 
-4. **Setup development environment**
-   - For Android:
-     ```bash
-     # Start Android Studio and open an emulator
-     npm run android
-     ```
-   - For iOS (macOS only):
-     ```bash
-     cd ios && pod install && cd ..
-     npm run ios
-     ```
-
-5. **Start the development server**
-   ```bash
+3. *Start the app*
+   bash
    npx expo start
-   ```
-   Then:
-   - Press `a` for Android
-   - Press `i` for iOS
-   - Scan QR code with Expo Go app on your physical device
+   
+   Use a for Android, i for iOS, or scan the QR code with Expo Go.
 
-## 📱 App Structure
+---
 
-- **Home Screen**: Browse trending and upcoming movies
-- **Search**: Find specific movies with instant search
-- **Movie Details**: View comprehensive movie information
-- **Favorites**: Access your saved movies
-
-## 🎯 Key Features Explained
-
-### Movie Discovery
-- Browse through different categories: Trending, Now Playing, and Upcoming
-- Smooth infinite scroll for continuous browsing
-- Quick search with debounced API calls
-
-### User Experience
-- Responsive layout adapting to different screen sizes
-- Smooth transitions and loading states
-- Offline support with data caching
-- Cross-platform compatibility (iOS & Android)
-
-### Performance
-- Efficient data fetching and caching
-- Optimized image loading
-- Minimal app size
-
-## 🤝 Contributing
-
-This is an assignment project, but feedback and suggestions are welcome! Feel free to open issues for any bugs or improvements you spot.
-
-## 📄 License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-## 🙏 Acknowledgments
-
-- TMDB API for providing the movie data
-- Expo team for the amazing development platform
-- Buy Me a Coffee team for the opportunity
+This is a challenge submission and won't be maintained. Feel free to use it as a reference for React Native development practices.
