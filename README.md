@@ -21,7 +21,6 @@ A React Native app that uses the TMDB API to help users discover and browse movi
 
 ### List Screen
 The main screen uses a responsive card layout that adapts to different device sizes. On phones, it shows a single column with detailed movie information, while tablets display a grid to utilize the larger screen space.
-![list-white](https://github.com/user-attachments/assets/daca672f-46fc-4218-be62-83f931797fdd)
 
 <table>
   <tr>
