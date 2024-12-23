@@ -2,7 +2,7 @@
 
 A React Native app that uses the TMDB API to help users discover and browse movies. This is my submission for the Buy Me a Coffee hiring challenge, built as a proof of concept to demonstrate React Native development practices.
 
-> ⚠ Note: The TMDB API might be blocked in India. If you don't see any movies loading, you'll need to use a VPN.
+> ⚠ Note: The TMDB API might be blocked in India. If you don't see any movies loading, you'll need to use a VPN. I couldn't switch to an alternative API since none offer features like movie search or trending movies.
 
 ## Table Of Contents
 
@@ -29,14 +29,6 @@ The main screen uses a responsive card layout that adapts to different device si
     </td>
     <td>
       <img src="https://github.com/user-attachments/assets/daca672f-46fc-4218-be62-83f931797fdd">
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <img src="">
-    </td>
-    <td>
-      <img src="">
     </td>
   </tr>
 </table>
