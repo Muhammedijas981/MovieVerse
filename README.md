@@ -24,14 +24,30 @@ The main screen uses a responsive card layout that adapts to different device si
 
 <table>
   <tr>
-    <td>
-      <img src="https://github.com/user-attachments/assets/fbd3e662-8a09-44db-8892-8e62be8f5dc9">
-    </td>
-    <td>
-      <img src="https://github.com/user-attachments/assets/daca672f-46fc-4218-be62-83f931797fdd">
-    </td>
+    <td><img src="https://github.com/user-attachments/assets/00b27137-297a-4e2d-a19f-74247b5b3087" width="250"></td>
+    <td><img src="https://github.com/user-attachments/assets/c00c769d-d946-448a-a79f-4f3af5165fbb" width="250"></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/0e3ad7ae-1d1d-4351-8cc7-4e22040ef173" width="250"></td>
+    <td><img src="https://github.com/user-attachments/assets/2d87a439-bb63-482e-9b95-1fcad133c8da" width="250"></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/d4e95848-d8f1-460b-b421-4a7faf02dfd9" width="250"></td>
+    <td><img src="https://github.com/user-attachments/assets/7dd511f7-bf08-4515-8fa7-ea8f86225c63" width="250"></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/3442497e-3fed-4dc8-bbf3-0f9240b15b07" width="250"></td>
+    <td><img src="https://github.com/user-attachments/assets/95e61986-4ed4-4098-a302-db194a6e571a" width="250"></td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/760eb837-539c-4145-b67b-884132fe83b7" width="250"></td>
+    <td><img src="https://github.com/user-attachments/assets/0654d4a7-a07d-43a7-b959-b7faa28c0ef1" width="250"></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><img src="https://github.com/user-attachments/assets/afae33c6-aa58-490f-bb85-5dd23c12e138" width="250"></td>
   </tr>
 </table>
+
 Each movie card contains:
 - Title and release year
 - Rating displayed as a 5-star system (converted from TMDB's 10-point scale)
