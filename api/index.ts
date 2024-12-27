@@ -3,6 +3,10 @@
     Manages adding the auth token, headers, etc, making the request and parsing the response,
 */
 
+// API configuration and request handling
+const baseUrl = process.env.EXPO_PUBLIC_BASE_URL || 'https://api.themoviedb.org/3';
+const authKey = process.env.EXPO_PUBLIC_AUTH_KEY;
+
 export interface Request<T = unknown> {
     url: string;
     method: 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -24,17 +28,12 @@ export class ApiError extends Error {
 }
 
 export async function makeRequest<T>(request: Request): Promise<T> {
-    const baseUrl = process.env.EXPO_PUBLIC_BASE_URL;
-    const authKey = process.env.EXPO_PUBLIC_AUTH_KEY;
-
-    console.log(baseUrl, authKey,"token");
-
-    if (!baseUrl || !authKey) {
-        throw new Error('API configuration is missing');
+    if (!authKey) {
+        console.error('API Key is missing. Please check your environment configuration.');
+        throw new ApiError('API configuration is missing', 401, null);
     }
 
     const url = new URL(`${baseUrl}${request.url}`);
-    console.log(url,"url");
 
     if (request.params) {
         Object.entries(request.params).forEach(([key, value]) =>
@@ -44,35 +43,44 @@ export async function makeRequest<T>(request: Request): Promise<T> {
 
     const headers: HeadersInit = {
         'Accept': 'application/json',
-        'Authorization': `Bearer ${authKey}`
+        'Authorization': `Bearer ${authKey}`,
+        'Content-Type': 'application/json'
     };
 
     const config: RequestInit = {
         method: request.method,
-        headers: headers,
+        headers: headers
     };
 
     if (request.multipart) {
         config.body = request.multipart;
     } else if (request.data) {
-        headers['Content-Type'] = 'application/json';
         config.body = JSON.stringify(request.data);
     }
 
     try {
+        console.log(`Making API request to: ${url.toString()}`);
         const response = await fetch(url.toString(), config);
 
         if (!response.ok) {
-            const errorData = await response.json();
+            const errorData = await response.json().catch(() => null);
+            console.error('API Error:', {
+                status: response.status,
+                statusText: response.statusText,
+                data: errorData
+            });
             throw new ApiError(
-                errorData.message || 'An error occurred',
+                errorData?.message || `HTTP error! status: ${response.status}`,
                 response.status,
                 errorData
             );
         }
 
-        return await response.json() as T;
+        const data = await response.json();
+        return data as T;
     } catch (error) {
+        console.error('Network Error:', error);
+        
         if (error instanceof ApiError) {
             throw error;
         }
@@ -83,10 +91,10 @@ export async function makeRequest<T>(request: Request): Promise<T> {
     }
 }
 
-// helper function to generate the image URL
-export const image = (path: string): string => `https://image.tmdb.org/t/p/original${path}`
+// Helper function to generate the image URL
+export const image = (path: string): string => `https://image.tmdb.org/t/p/original${path}`;
 
-// helper function to format the release date
+// Helper function to format the release date
 export const formatReleaseDate = (dateString: string): string => {
     const date = new Date(dateString);
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
